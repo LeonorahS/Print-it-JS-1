@@ -12,20 +12,26 @@
 <body>
 <header class="container">
 	<h1>
-		<img class="logo" src="./assets/images/logo.png" alt="Print it ! Impressions d'entreprises" >
+		<img class="logo" src="./assets/images/logo.png" alt="Print it ! Impressions d'entreprises">
 	</h1>
 	<a class="btn devis" href="mailto:contact@print-it.tld">Devis</a>
+
 </header>
 <main>
-	<div id="banner">
-		<img class="banner-img" src="./assets/images/slideshow/slide1.jpg" alt="Banner Print-it">
-		<p id="banner-tagline"'>Impressions tous formats <span>en boutique et en ligne</span></p>
-		<div class="dots">
+	<div class="banner">
+		<img id="banner-img" src="./assets/images/slideshow/slide1.jpg" alt="Banner Print-it">
+		<p id="banner-tagline">Impressions tous formats <span>en boutique et en ligne</span></p>
+		<div>
+			<img src="assets/images/arrow_right.png" alt="arrow_right" class="arrow_right">
+			<img src="assets/images/arrow_left.png" alt="arrow_left" class="arrow_left">
 		</div>
-		<img src="assets/images/arrow_right.png" alt="arrow_right" class="arrow_right arrow ">
-		<img src="assets/images/arrow_left.png" alt="arrow_left" class="arrow_left arrow ">
-
-
+		<div class="dots">
+			<span class="dot active dot_selected" data-index="0"></span>
+			<span class="dot" data-index="1"></span>
+			<span class="dot" data-index="2"></span>
+			<span class="dot" data-index="3"></span>
+			<span class="dot" data-index="4"></span>
+		</div>
 	</div>
 	<section id="about-us" class="container">
 		<div>
@@ -127,6 +133,6 @@
 		<img class="footer-logo" src="./assets/images/logo.png" alt="Print it ! Impressions d'entreprises" >
 	</div>
 </footer>
-<script src="./assets/script.js"></script>
+<script src="./assets/script.js"defer></script>
 </body>
 </html>
