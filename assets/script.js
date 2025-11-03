@@ -17,63 +17,83 @@ const slides = [
 	}
 ]
 
-const bannerImage = document.querySelector('#banner-img');
-const bannerTagLine = document.querySelector('#banner-tagline');
-const leftArrow = document.querySelector('.arrow_left');
-const rightArrow = document.querySelector('.arrow_right');
-const dotsContainer = document.querySelector('.dots');
 
-let counter= 0;
 
+// 1 sélectionner les éléments du DOM nécessaires pour le slider
+const bannerImage = document.querySelector('#banner-img'); // image principale
+const bannerTagLine = document.querySelector('#banner-tagline'); // texte de la bannière
+const leftArrow = document.querySelector('.arrow_left'); // flèche gauche
+const rightArrow = document.querySelector('.arrow_right'); // flèche droite
+const dotsContainer = document.querySelector('.dots'); // conteneur des points
+
+// 2 initialiser le compteur représente l'index du slide actuellement affiché
+let compteur = 0;
+
+// 3 Creer la fonction qui met à jour l’image et le texte affiché dans la bannière, la function sliderPrint es la principale.
 function sliderPrint() {
-	bannerImage.src = `./assets/images/slideshow/${slides[counter].image}`;	
-	bannerTagLine.innerHTML = slides[counter].tagLine;
-	updatedots();
+	bannerImage.src = `./assets/images/slideshow/${slides[compteur].image}`; // met à jour l'image o la recupere du tableau
+	bannerTagLine.innerHTML = slides[compteur].tagLine; // met à jour le texte de chaque image inclus en la balise span de p.
+	updateDots(); // met à jour les points actifs qui corresponds à la image quii s'affihe.
 }
 
-function createDots() {	
-	for (let i = 0; i < slides.length; i++) {
-		const dot = document.createElement('span');
-		dot.classList.add('dot');
-		if (i === counter) {
-			dot.classList.add('active');
+// 4 Creer la fonction pour les points pour créer dynamiquement les points (dots) pour chaque slide à fur et mesure que lee les slides quis e trouvent dans le tableau 
+function createDots() {
+	for (let i = 0; i < slides.length; i++) { // boucle for" pour chaque" slide dans le tableau slides, commence à 0 et s'arrête avant slides.length qui serait le nombre total de slides
+		const dot = document.createElement('span'); // crée un <span> pour un point 
+		dot.classList.add('dot'); // lui ajoute la classe .dot pour le style CSS
+
+		// Si le point correspond à l’image actuellement affichée, on lui ajoute la classe .active
+
+		if (i === compteur) {
+			dot.classList.add('active'); // active le point correspondant à l’image affichée
 		}
 
+		// Lorsque l’utilisateur clique sur un point, on met à jour le compteur et on affiche le bon slide
 		dot.addEventListener('click', () => {
-			counter = i;
-			sliderPrint();
+			compteur = i;
+			sliderPrint(); // on met à jour l’image, le texte et les points
 		});
 
-		dotsContainer.appendChild(dot);
+		//dotsContainer.appendChild(dot); // ajoute le point au DOM dans le conteneur .dots
 	}
 }
 
-
-
-function updatedots() {
-	const dots = document.querySelectorAll('.dot');			
+// 5 Creer la  fonction  qui supprime la classe active de tous les points,
+// puis l’ajoute uniquement sur celui qui correspond au slide affiché actuellement.
+function updateDots() {
+	const dots = document.querySelectorAll('.dot'); // sélectionne tous les points existants
 	dots.forEach((dot) => {
-		dot.classList.remove('active');
+		dot.classList.remove('active'); // on désactive tous les points
 	});
-	dots[counter].classList.add('active');
+	dots[compteur].classList.add('active'); // on active uniquement le point correspondant à l’image actuelle
 }
 
-leftArrow.addEventListener('click', () => {
-	counter--;		
-	if (counter < 0) {
-		counter = slides.length - 1;
+// 6 Ajouter les evenementss sur les images des fleches , Flèche droite : aller au slide suivant (ou revenir au premier)
+rightArrow.addEventListener('click', () => {
+	compteur++;
+	if (compteur >= slides.length) {
+		compteur = 0;
 	}
 	sliderPrint();
 });
 
-	rightArrow.addEventListener('click', () => {
-		counter++;
-		if (counter >= slides.length) {
-			counter = 0;
-		}
-		sliderPrint();
-	});
+// Flèche gauche : aller au slide précédent (ou revenir au dernier)
+leftArrow.addEventListener('click', () => {
+	compteur--;
+	if (compteur < 0) {
+		compteur = slides.length - 1;
+	}
+	sliderPrint();
+});
+// 7 Automatiser le carrousel avec la fonction setInterval : faire défiler automatiquement les slides toutes les 3 secondes.
+setInterval(() => {
+	compteur++;
+	if (compteur >= slides.length) {
+		compteur = 0;
+	}
+	sliderPrint();
+}, 3000); // Toutes les 3 secondes
 
+// On affiche le premier slide au chargement de la page
 sliderPrint();
-createDots();
- updatedots();
+
