@@ -18,7 +18,6 @@ const slides = [
 ]
 
 
-
 // 1 sélectionner les éléments du DOM nécessaires pour le slider
 const bannerImage = document.querySelector('#banner-img'); // image principale
 const bannerTagLine = document.querySelector('#banner-tagline'); // texte de la bannière
@@ -85,6 +84,7 @@ leftArrow.addEventListener('click', () => {
 	}
 	sliderPrint();
 });
+
 // 7 Automatiser le carrousel avec la fonction setInterval : faire défiler automatiquement les slides toutes les 3 secondes.
 setInterval(() => {
 	compteur++;
