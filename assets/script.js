@@ -84,16 +84,6 @@ leftArrow.addEventListener('click', () => {
 	}
 	sliderPrint();
 });
-
-// 7 Automatiser le carrousel avec la fonction setInterval : faire défiler automatiquement les slides toutes les 3 secondes.
-setInterval(() => {
-	compteur++;
-	if (compteur >= slides.length) {
-		compteur = 0;
-	}
-	sliderPrint();
-}, 3000); // Toutes les 3 secondes
-
-// On affiche le premier slide au chargement de la page
+// Initialisation du slider
 sliderPrint();
 
