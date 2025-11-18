@@ -35,7 +35,7 @@ function sliderPrint() {
 	updateDots(); // met à jour les points actifs qui corresponds à la image quii s'affihe.
 }
 
-// 4 Creer la fonction pour les points pour créer dynamiquement les points (dots) pour chaque slide à fur et mesure que lee les slides quis e trouvent dans le tableau 
+// 4 Creer la fonction pour les points pour créer dynamiquement les points (dots) pour chaque slide à fur et mesure que lee les slides qui se trouvent dans le tableau 
 function createDots() {
 	for (let i = 0; i < slides.length; i++) { // boucle for" pour chaque" slide dans le tableau slides, commence à 0 et s'arrête avant slides.length qui serait le nombre total de slides
 		const dot = document.createElement('span'); // crée un <span> pour un point 
@@ -53,7 +53,7 @@ function createDots() {
 			sliderPrint(); // on met à jour l’image, le texte et les points
 		});
 
-		//dotsContainer.appendChild(dot); // ajoute le point au DOM dans le conteneur .dots
+		dotsContainer.appendChild(dot); // ajoute le point au DOM dans le conteneur .dots
 	}
 }
 
@@ -85,5 +85,6 @@ leftArrow.addEventListener('click', () => {
 	sliderPrint();
 });
 // Initialisation du slider
+createDots();
 sliderPrint();
 
